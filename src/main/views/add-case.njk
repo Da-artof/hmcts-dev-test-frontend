@@ -1,0 +1,78 @@
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/textarea/macro.njk" import govukTextarea %}
+{% from "govuk/components/select/macro.njk" import govukSelect %}
+{% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+{% extends "template.njk" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">Add new case</h1>
+
+  <form method="POST">
+  
+    {{ govukInput({
+    label: {
+        text: "Case number"
+    },
+    id: "case-number",
+    name: "caseNumber"
+    }) }}
+
+    {{ govukInput({
+    label: {
+        text: "Case title"
+    },
+    id: "case-title",
+    name: "title"
+    }) }}
+        
+    {{ govukTextarea({
+    name: "description",
+    id: "description",
+    label: {
+        text: "Description"
+    }
+    }) }}
+
+    {{ govukSelect({
+    id: "status",
+    name: "status",
+    label: {
+        text: "Status"
+    },
+    items: [
+        {
+        value: "not-started",
+        text: "Not started",
+        selected: true
+        },
+        {
+        value: "in-progress",
+        text: "In progress"
+        },
+        {
+        value: "completed",
+        text: "Completed"
+        }
+    ]
+    }) }}
+
+    {{ govukDateInput({
+    id: "due-date",
+    namePrefix: "due-date",
+    fieldset: {
+        legend: {
+        text: "Due date"
+        }
+    }
+    }) }}
+
+    {{ govukButton({
+    text: "Submit",
+    classes: "govuk-button--secondary"
+    }) }}
+</form>
+
+
+{% endblock %}
