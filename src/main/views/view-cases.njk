@@ -1,0 +1,38 @@
+{% from "govuk/components/table/macro.njk" import govukTable %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
+{% extends "template.njk" %}
+
+{% block content %}
+  <h1 class="govuk-heading-xl">All cases</h1>
+  <table class="govuk-table">
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th class="govuk-table__header">ID</th>
+      <th class="govuk-table__header">Case Number</th>
+      <th class="govuk-table__header">Title</th>
+      <th class="govuk-table__header">Description</th>
+      <th class="govuk-table__header">Status</th>
+      <th class="govuk-table__header">Due</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    {% for case in cases %}
+      <tr class="govuk-table__row">
+        <td class="govuk-table__cell">{{ case.id }}</td>
+        <td class="govuk-table__cell">{{ case.caseNumber }}</td>
+        <td class="govuk-table__cell">{{ case.title }}</td>
+        <td class="govuk-table__cell">{{ case.description }}</td>
+        <td class="govuk-table__cell">{{ case.status }}</td>
+        <td class="govuk-table__cell">{{ case.dueDate}}</td>
+      </tr>
+    {% endfor %}
+  </tbody>
+</table>
+{{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
+
+
+{% endblock %}
