@@ -1,18 +1,30 @@
 {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 {% from "govuk/components/button/macro.njk" import govukButton %}
 
 {% extends "template.njk" %}
 
-<!-- You may want to make further use of these components: https://design-system.service.gov.uk/components/
-but ultimately it is up to you -->
 
 {% block content %}
-  <h1 class="govuk-heading-xl">Welcome to your dev test!</h1>
+  <h1 class="govuk-heading-xl">Case management</h1>
 
-  <!-- The freedom is yours. You can design the solution however you like, however there is a starting point provided
-  to ensure you have both services running. You may want to make use of the Gov UK Components:
-  https://design-system.service.gov.uk/components/ to add tabs and so forth :) -->
+  <form method="POST">
+    {{ govukInput({
+      label: {
+        text: "Search by case ID",
+        classes: "govuk-label--l",
+        isPageHeading: true
+      },
+      id: "case-ID",
+      name: "ID"
+    }) }}
 
+    {{ govukButton({
+      id: "search-button",
+      text: "Search",
+      classes: "govuk-button--secondary"
+    }) }}
+  </form>
   {% if example.id %}
 
     {{ govukSummaryList({
@@ -116,6 +128,12 @@ but ultimately it is up to you -->
         }
       ]
     }) }}
+    <form action = "/delete" method="POST">
+      {{ govukButton({
+      text: "Delete case",
+      classes: "govuk-button--warning"
+      }) }}
+    </form>
 
   {% endif %}
 
@@ -123,4 +141,11 @@ but ultimately it is up to you -->
     text: "Add a new case",
     href: "/add-case"
   }) }}
+  {{ govukButton({
+      id: "view-all",
+      text: "View all cases",
+      href: "/view-cases",
+      classes: "govuk-button--secondary"
+    }) }}
+
 {% endblock %}

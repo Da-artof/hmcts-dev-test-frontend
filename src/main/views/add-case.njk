@@ -3,6 +3,8 @@
 {% from "govuk/components/textarea/macro.njk" import govukTextarea %}
 {% from "govuk/components/select/macro.njk" import govukSelect %}
 {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+{% from "govuk/components/back-link/macro.njk" import govukBackLink %}
+
 
 {% extends "template.njk" %}
 
@@ -73,6 +75,11 @@
     classes: "govuk-button--secondary"
     }) }}
 </form>
+
+{{ govukBackLink({
+  text: "Back",
+  href: "/"
+}) }}
 
 
 {% endblock %}
